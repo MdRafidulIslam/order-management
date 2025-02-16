@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const AddOrder = () => {
+  const router=useNavigate();
   let [location, setLocation] = useState("");
   const handleLocationkalarphul = () => {
     setLocation("Kalarphul");
@@ -28,7 +30,7 @@ const AddOrder = () => {
     const addOrder = { name, cname, quantity, jobid, orderno, amount, place };
     console.log(addOrder);
 
-    fetch("http://localhost:5000/order", {
+    fetch("https://crud-operation-server-jet.vercel.app/order", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -45,34 +47,36 @@ const AddOrder = () => {
             icon: "success",
             confirmButtonText: "Added",
           });
+          router('/');
         }
+        
       });
   };
   return (
-    <div className="bg-[#F4F3F0] p-32">
-      <h2 className="text-3xl font-extrabold">Add a order</h2>
+    <div className="bg-slate-400 p-32">
+      <h2 className="text-3xl font-extrabold text-white">Add a order</h2>
       <form onSubmit={handleAddOrder}>
         {/* {name and company name row} */}
         <div className="md:flex mb-8">
           <div className="form-control md:w-1/2">
             <div className="label">
-              <span className="label-text">Order Name</span>
+              <span className="label-text text-white">Order Name</span>
             </div>
             <input
               type="text"
               name="name"
               placeholder="enter order name"
-              className="input input-bordered w-full text-white text-xl"
+              className="input input-bordered w-full text-xl"
             />
           </div>
           <div className="form-control md:w-1/2 ml-4">
             <div className="label">
-              <span className="label-text">Company Name</span>
+              <span className="label-text text-white">Company Name</span>
             </div>
             <select
               type="text"
               name="cname"
-              className="select select-bordered text-white text-xl"
+              className="select select-bordered text-xl"
             >
               <option disabled selected>
                 --select company--
@@ -88,24 +92,24 @@ const AddOrder = () => {
         <div className="md:flex mb-8">
           <div className="form-control md:w-1/2">
             <div className="label">
-              <span className="label-text">Job Id</span>
+              <span className="label-text text-white">Job Id</span>
             </div>
             <input
               type="text"
               name="jobid"
               placeholder="enter Job id"
-              className="input input-bordered w-full text-white text-xl"
+              className="input input-bordered w-full text-xl"
             />
           </div>
           <div className="form-control md:w-1/2 ml-4">
             <div className="label">
-              <span className="label-text">Order No</span>
+              <span className="label-text text-white">Order No</span>
             </div>
             <input
               type="text"
               name="orderno"
               placeholder="enter order no here"
-              className="input input-bordered w-full text-white text-xl"
+              className="input input-bordered w-full  text-xl"
             />
           </div>
         </div>
@@ -113,24 +117,24 @@ const AddOrder = () => {
         <div className="md:flex mb-8">
           <div className="form-control md:w-1/2">
             <div className="label">
-              <span className="label-text">Amount</span>
+              <span className="label-text text-white">Amount</span>
             </div>
             <input
               type="text"
               name="amount"
               placeholder="enter amount"
-              className="input input-bordered w-full text-white text-xl"
+              className="input input-bordered w-full text-xl"
             />
           </div>
           <div className="form-control md:w-1/2 ml-4">
             <div className="label">
-              <span className="label-text">Available Quantity</span>
+              <span className="label-text text-white">Available Quantity</span>
             </div>
             <input
               type="text"
               name="quantity"
               placeholder="enter quantity here"
-              className="input input-bordered w-full text-white text-xl"
+              className="input input-bordered w-full  text-xl"
             />
           </div>
         </div>
@@ -199,7 +203,7 @@ const AddOrder = () => {
         <input
           type="submit"
           value="Add Order"
-          className="btn btn-block text-white"
+          className="btn btn-block btn-success text-white"
         />
       </form>
     </div>

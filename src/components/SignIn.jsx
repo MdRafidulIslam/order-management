@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Providers/AuthProviders';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
     const {signInUser}=useContext(AuthContext);
+    const router=useNavigate();
 
     const handleSignIn = (e) => {
         e.preventDefault();
@@ -19,7 +20,7 @@ const SignIn = () => {
             const lastSignInTime = result?.user?.metadata?.lastSignInTime;
             const loginInfo = { email, lastSignInTime };
 
-            fetch(`http://localhost:5000/users`, {
+            fetch(`https://crud-operation-server-jet.vercel.app/users`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json'
@@ -28,7 +29,8 @@ const SignIn = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log('sign in info updated in db', data)
+                    console.log('sign in info updated in db', data);
+                    router('/users');
                 })
         })
         .catch(error=>{

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const UpdateOrder = () => {
+  const router=useNavigate();
     const order=useLoaderData();
     const { _id, name, cname, quantity, jobid, orderno, amount, place } = order;
       let [location, setLocation] = useState("");
@@ -30,8 +31,9 @@ const UpdateOrder = () => {
         let place = location;
         const updateOrder = { name, cname, quantity, jobid, orderno, amount, place };
         console.log(updateOrder);
+        
     
-        fetch(`http://localhost:5000/order/${_id}`, {
+        fetch(`https://crud-operation-server-jet.vercel.app/order/${_id}`, {
           method: "PUT",
           headers: {
             "content-type": "application/json",
@@ -48,37 +50,38 @@ const UpdateOrder = () => {
                 icon: "success",
                 confirmButtonText: "updated",
               });
+              router('/');
             }
           });
       };
 
     return (
-        <div className="bg-[#F4F3F0] p-32">
-        <h2 className="text-3xl font-extrabold">Update order : {name}</h2>
+        <div className="bg-slate-400 p-32">
+        <h2 className="text-3xl font-extrabold text-white">Update order : {name}</h2>
         <form onSubmit={handleUpdateOrder}>
           {/* {name and company name row} */}
           <div className="md:flex mb-8">
             <div className="form-control md:w-1/2">
               <div className="label">
-                <span className="label-text">Order Name</span>
+                <span className="label-text text-white">Order Name</span>
               </div>
               <input
                 type="text"
                 name="name"
                 defaultValue={name}
                 placeholder="enter order name"
-                className="input input-bordered w-full text-white text-xl"
+                className="input input-bordered w-full text-xl"
               />
             </div>
             <div className="form-control md:w-1/2 ml-4">
               <div className="label">
-                <span className="label-text">Company Name</span>
+                <span className="label-text text-white">Company Name</span>
               </div>
               <select
                 type="text"
                 name="cname"
                 defaultValue={cname}
-                className="select select-bordered text-white text-xl"
+                className="select select-bordered text-xl"
               >
                 <option disabled selected>
                   --select company--
@@ -94,26 +97,26 @@ const UpdateOrder = () => {
           <div className="md:flex mb-8">
             <div className="form-control md:w-1/2">
               <div className="label">
-                <span className="label-text">Job Id</span>
+                <span className="label-text text-white">Job Id</span>
               </div>
               <input
                 type="text"
                 name="jobid"
                 defaultValue={jobid}
                 placeholder="enter Job id"
-                className="input input-bordered w-full text-white text-xl"
+                className="input input-bordered w-full  text-xl"
               />
             </div>
             <div className="form-control md:w-1/2 ml-4">
               <div className="label">
-                <span className="label-text">Order No</span>
+                <span className="label-text text-white">Order No</span>
               </div>
               <input
                 type="text"
                 name="orderno"
                 defaultValue={orderno}
                 placeholder="enter order no here"
-                className="input input-bordered w-full text-white text-xl"
+                className="input input-bordered w-full  text-xl"
               />
             </div>
           </div>
@@ -121,26 +124,26 @@ const UpdateOrder = () => {
           <div className="md:flex mb-8">
             <div className="form-control md:w-1/2">
               <div className="label">
-                <span className="label-text">Amount</span>
+                <span className="label-text text-white">Amount</span>
               </div>
               <input
                 type="text"
                 name="amount"
                 defaultValue={amount}
                 placeholder="enter amount"
-                className="input input-bordered w-full text-white text-xl"
+                className="input input-bordered w-full  text-xl"
               />
             </div>
             <div className="form-control md:w-1/2 ml-4">
               <div className="label">
-                <span className="label-text">Available Quantity</span>
+                <span className="label-text text-white">Available Quantity</span>
               </div>
               <input
                 type="text"
                 name="quantity"
                 defaultValue={quantity}
                 placeholder="enter quantity here"
-                className="input input-bordered w-full text-white text-xl"
+                className="input input-bordered w-full  text-xl"
               />
             </div>
           </div>
@@ -160,9 +163,10 @@ const UpdateOrder = () => {
                 >
                    
                   <input
-                    type="radio"
-                    className="radio radio-md"
-                    name="kala"
+                    // type="radio"
+                    // className="radio radio-md"
+                    // name="kala"
+                    type="radio" name="radio-5" className="radio radio-success"
                     
                     id="kalarphul"
                   />
@@ -178,9 +182,10 @@ const UpdateOrder = () => {
                   onClick={handleLocationbaizid}
                 >
                   <input
-                    type="radio"
-                    className="radio radio-md"
-                    name="kala"
+                    // type="radio"
+                    // className="radio radio-md"
+                    // name="kala"
+                    type="radio" name="radio-5" className="radio radio-success"
                     id="baizid"
                     setLocation="Baizid"
                   />
@@ -196,10 +201,10 @@ const UpdateOrder = () => {
                   onClick={handleLocationkalaurghat}
                 >
                   <input
-                    type="radio"
-                    className="radio radio-md"
-                    name="kala"
-                   
+                    // type="radio"
+                    // className="radio radio-md"
+                    // name="kala"
+                   type="radio" name="radio-5" className="radio radio-success"
                     id="kalurghat"
                   />
                   <span className="label-text text-xl text-black ml-4">
@@ -212,7 +217,7 @@ const UpdateOrder = () => {
           <input
             type="submit"
             value="Update Order"
-            className="btn btn-block text-white"
+            className="btn btn-block btn-success text-white"
           />
         </form>
       </div>

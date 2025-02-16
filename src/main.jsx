@@ -20,7 +20,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/order"),
+        loader: () => fetch("https://crud-operation-server-jet.vercel.app/order"),
       },
       {
         path: "addorder",
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
         path: "updateorder/:id",
         element: <UpdateOrder></UpdateOrder>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/order/${params.id}`),
+          fetch(`https://crud-operation-server-jet.vercel.app/order/${params.id}`),
       },
       {
         path: "signin",
@@ -43,7 +43,7 @@ const router = createBrowserRouter([
       {
         path:"users",
         element:<Users></Users>,
-        loader : ()=>fetch("http://localhost:5000/users"),
+        loader : ()=>fetch("https://crud-operation-server-jet.vercel.app/users"),
       },
     ],
   },

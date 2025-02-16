@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProviders";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const { createUser } = useContext(AuthContext);
+  const router=useNavigate();
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -18,7 +20,7 @@ const SignUp = () => {
         console.log(result.user);
         const createAt=result?.user?.metadata?.creationTime;
         const newUser={name,email,createAt};
-        fetch("http://localhost:5000/users", {
+        fetch("https://crud-operation-server-jet.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -35,6 +37,7 @@ const SignUp = () => {
                 icon: "success",
                 confirmButtonText: "Added new User",
               });
+              router('/users');
             }
           });
       })
